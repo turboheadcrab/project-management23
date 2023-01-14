@@ -1,9 +1,6 @@
 package com.jrp.pma.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
@@ -14,14 +11,18 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project theProject;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email, Project project) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.theProject = project;
     }
 
     public long getEmployeeId() {
@@ -54,5 +55,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Project getTheProject() {
+        return theProject;
+    }
+
+    public void setTheProject(Project theProject) {
+        this.theProject = theProject;
     }
 }

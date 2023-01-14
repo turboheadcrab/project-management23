@@ -1,9 +1,8 @@
 package com.jrp.pma.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Project {
@@ -13,6 +12,8 @@ public class Project {
     private String name;
     private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
     private String description;
+    @OneToMany(mappedBy = "theProject")
+    private List<Employee> employees;
 
     public Project() {
     }
@@ -53,5 +54,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }
