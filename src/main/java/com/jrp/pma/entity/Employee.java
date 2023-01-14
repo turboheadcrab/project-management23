@@ -11,18 +11,20 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    @ManyToOne
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "project_id")
     private Project theProject;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, Project project) {
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.theProject = project;
     }
 
     public long getEmployeeId() {
