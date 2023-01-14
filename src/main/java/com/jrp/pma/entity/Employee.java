@@ -2,6 +2,8 @@ package com.jrp.pma.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Employee {
     @Id
@@ -11,12 +13,16 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    @ManyToOne(
+    @ManyToMany(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY
     )
-    @JoinColumn(name = "project_id")
-    private Project theProject;
+    @JoinTable(
+            name = "project_employee",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Project> projects;
 
     public Employee() {
     }
@@ -59,11 +65,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Project getTheProject() {
-        return theProject;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setTheProject(Project theProject) {
-        this.theProject = theProject;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
