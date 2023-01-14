@@ -30,7 +30,7 @@ public class ProjectController {
     }
 
     @PostMapping(value = "/save")
-    public String createProject(Project project, Model model) {
+    public String createProject(Project project) {
         projectRepository.save(project);
 
         // use a redirect to prevent duplicate submissions
