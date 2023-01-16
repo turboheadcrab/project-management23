@@ -1,18 +1,26 @@
 package com.jrp.pma;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/* Uncomment to seed the database with CommandLineRunner
+
 import com.jrp.pma.dao.EmployeeRepository;
 import com.jrp.pma.dao.ProjectRepository;
 import com.jrp.pma.entity.Employee;
 import com.jrp.pma.entity.Project;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.Arrays;
+import java.util.Arrays;*/
 
 @SpringBootApplication
 public class ProjectManagement23Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ProjectManagement23Application.class, args);
+    }
+
+    /* Uncomment to seed the database with CommandLineRunner
 
     final
     EmployeeRepository employeeRepository;
@@ -23,10 +31,6 @@ public class ProjectManagement23Application {
     public ProjectManagement23Application(EmployeeRepository employeeRepository, ProjectRepository projectRepository) {
         this.employeeRepository = employeeRepository;
         this.projectRepository = projectRepository;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(ProjectManagement23Application.class, args);
     }
 
     @Bean
@@ -92,5 +96,5 @@ public class ProjectManagement23Application {
             projectRepository.save(pro3);
             projectRepository.save(pro4);
         };
-    }
+    }*/
 }
