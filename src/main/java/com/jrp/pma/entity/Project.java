@@ -9,7 +9,7 @@ import java.util.List;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long projectId;
+    private Long projectId;
     private String name;
     private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
     private String description;
