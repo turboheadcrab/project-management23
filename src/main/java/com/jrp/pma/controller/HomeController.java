@@ -2,7 +2,7 @@ package com.jrp.pma.controller;
 
 import com.jrp.pma.dao.EmployeeRepository;
 import com.jrp.pma.dao.ProjectRepository;
-import com.jrp.pma.entity.Employee;
+import com.jrp.pma.dto.EmployeeProject;
 import com.jrp.pma.entity.Project;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +26,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String displayHome(Model model) {
+        // query the database for projects
         List<Project> projects = projectRepository.findAll();
         model.addAttribute("projectsList", projects);
-        List<Employee> employees = employeeRepository.findAll();
-        model.addAttribute("employeeList", employees);
+
+        // query the database for employees
+        List<EmployeeProject> employeesProjectCount = employeeRepository.employeeProjects();
+        model.addAttribute("employeesListProjectCount", employeesProjectCount);
+
         return "main/home";
     }
 }
