@@ -7,6 +7,7 @@ import com.jrp.pma.dao.ProjectRepository;
 import com.jrp.pma.dto.ChartData;
 import com.jrp.pma.dto.EmployeeProject;
 import com.jrp.pma.entity.Project;
+import com.jrp.pma.springExample.Car;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +20,18 @@ import java.util.Map;
 public class HomeController {
 
     final
+    Car car;
+
+    final
     ProjectRepository projectRepository;
 
     final
     EmployeeRepository employeeRepository;
 
-    public HomeController(ProjectRepository projectRepository, EmployeeRepository employeeRepository) {
+    public HomeController(ProjectRepository projectRepository, EmployeeRepository employeeRepository, Car car) {
         this.projectRepository = projectRepository;
         this.employeeRepository = employeeRepository;
+        this.car = car;
     }
 
     @GetMapping("/")
@@ -43,6 +48,7 @@ public class HomeController {
         // convert projectData object into a JSON for use in JS
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(projectData);
+
         // [["NOTSTARTED", 1], ["INPROGRESS", 2], ["COMPLETED", 1]]
         model.addAttribute("projectStatusCount", jsonString);
 
