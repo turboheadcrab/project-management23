@@ -13,7 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import java.util.Arrays;*/
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.jrp.pma", "com.jrp.utils"})
 public class ProjectManagement23Application {
 
     public static void main(String[] args) {
