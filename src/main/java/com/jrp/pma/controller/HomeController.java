@@ -7,7 +7,7 @@ import com.jrp.pma.dao.ProjectRepository;
 import com.jrp.pma.dto.ChartData;
 import com.jrp.pma.dto.EmployeeProject;
 import com.jrp.pma.entity.Project;
-import com.jrp.pma.springExample.Car;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +19,8 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
-    final
-    Car car;
+    @Value("${version}")
+    private String version;
 
     final
     ProjectRepository projectRepository;
@@ -28,14 +28,15 @@ public class HomeController {
     final
     EmployeeRepository employeeRepository;
 
-    public HomeController(ProjectRepository projectRepository, EmployeeRepository employeeRepository, Car car) {
+    public HomeController(ProjectRepository projectRepository, EmployeeRepository employeeRepository) {
         this.projectRepository = projectRepository;
         this.employeeRepository = employeeRepository;
-        this.car = car;
     }
 
     @GetMapping("/")
     public String displayHome(Model model) throws JsonProcessingException {
+
+        model.addAttribute("versionNumber", version);
 
         Map<String, Object> map = new HashMap<>();
 
